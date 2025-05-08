@@ -1,0 +1,171 @@
+/* 出品画面 全体 */
+.exhibit-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 50px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトル */
+.exhibit-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* フォーム項目 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* カテゴリーボタン全体 */
+.category-buttons {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 20px;
+        /* ★列と列の隙間（column-gap）を20pxに固定する */
+    row-gap: 10px;
+        /* ★行と行の隙間（row-gap）も設定する */
+    justify-items: center;
+}
+
+/* カテゴリーボタン個別 */
+.category-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    border: 2px solid #f66;
+    border-radius: 20px;
+    background: #fff;
+    color: #f66;
+    font-weight: bold;
+    font-size: 12px;
+    height: 40px;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ラジオボタンは非表示 */
+.category-button input[type="radio"] {
+    display: none;
+}
+
+/* 選択されたときのスタイル */
+.category-button input[type="radio"]:checked+* {
+    background: #f66;
+    color: #fff;
+}
+/* テキスト入力・セレクト・テキストエリア */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* エラー文 */
+.form-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* 出品ボタン */
+.submit-button {
+    width: 100%;
+    background: #f66;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* 改行用 */
+.break {
+    display: none;
+}
+
+/* 商品画像アップロードエリア */
+.image-upload {
+    border: 1px dashed #ccc;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* 画像を選択するボタン */
+.upload-button {
+    background-color: #f66;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* 画像を選択するボタン */
+.upload-button {
+    display: inline-block;
+    padding: 10px 24px;
+    border: 2px solid #f66;
+    border-radius: 12px;
+    background: #fff;
+    /* 白背景 */
+    color: #f66;
+    /* 文字は赤 */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ホバー時 */
+.upload-button:hover {
+    background: #f66;
+    color: #fff;
+}
+
+/* 販売価格の¥マークを枠内に配置 */
+.price-input-wrapper {
+    position: relative;
+}
+
+.price-yen {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #333;
+}
+
+.price-input {
+    padding-left: 30px;
+    /* ¥マーク分だけ余白を作る */
+}
+
+/* 商品説明欄を大きくする */
+textarea {
+    height: 150px;
+}

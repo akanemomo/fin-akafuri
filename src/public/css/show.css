@@ -1,0 +1,121 @@
+.item-detail__wrapper {
+    display: flex;
+    max-width: 900px;
+    margin: 40px auto;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.item-detail__image-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.item-detail__image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.image-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.item-detail__info-box {
+    flex: 1;
+}
+
+.item-detail__name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.item-detail__brand {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.item-detail__price {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tax-included {
+    font-size: 14px;
+    color: #666;
+}
+
+.item-detail__icons {
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.item-detail__section {
+    margin-bottom: 30px;
+}
+
+.item-detail__section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+}
+
+.comment {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.comment-textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ✅ 統一赤ボタン */
+.button-red {
+    background: #F26B6B;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    /* 🔴 幅いっぱいに */
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    margin-top: 20px;
+    /* 🔴 中央寄せしないようにauto削除 */
+}
+
+.badge {
+    display: inline-block;
+    background-color: #eee;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-left: 5px;
+}

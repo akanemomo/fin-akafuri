@@ -1,0 +1,110 @@
+/* ページ全体 */
+.purchase-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* 横並びの2カラム構造 */
+.purchase-content {
+    display: flex;
+    gap: 40px;
+}
+
+/* 左側：商品詳細＋フォーム */
+.purchase-left {
+    flex: 2;
+}
+
+/* 商品画像と名前・価格 */
+.item-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.item-image {
+    width: 100px;
+    height: 100px;
+    background-color: #eee;
+    object-fit: cover;
+}
+
+.item-text {
+    font-size: 18px;
+}
+
+.item-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.item-price {
+    font-size: 20px;
+    color: #333;
+}
+
+/* フォーム共通ブロック */
+.form-block {
+    margin-bottom: 30px;
+}
+
+.form-block label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-block select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* 住所ブロック */
+.address p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.change-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: #007bff;
+    font-size: 14px;
+}
+
+/* 右側：合計と購入ボタン */
+.purchase-summary {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    height: fit-content;
+}
+
+.summary-box p {
+    margin-bottom: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.purchase-button {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #f66;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}

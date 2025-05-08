@@ -1,0 +1,86 @@
+/* ヘッダー全体 */
+.header {
+    background: #000;
+}
+
+/* ヘッダー内ラッパー */
+.header__inner {
+    margin: 0 auto;
+    padding: 10px 20px;
+    max-width: 1200px;
+}
+
+/* ヘッダーユーティリティ（ロゴ・検索・ナビ） */
+.header-utilities {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    /* ← ロゴと検索の間隔を確保 */
+}
+
+/* ロゴ画像サイズ */
+.header__logo-img {
+    width: 150px;
+    height: auto;
+}
+
+/* 検索ボックス */
+.header__search-box {
+    width: 400px;
+    /* ← 長さ調整 */
+    height: 30px;
+    margin: 0 30px;
+    /* ← 左右の余白調整 */
+    padding: 0 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* ナビゲーションラッパー */
+.header-utilities nav {
+    flex-shrink: 0;
+}
+
+/* ナビゲーション */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ナビゲーション各項目 */
+.header-nav__item {
+    list-style: none;
+}
+
+/* 通常リンク */
+.header-nav__link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* ログアウトボタンも同じ見た目にする */
+.header-nav__link,
+.header-nav__button {
+    color: #fff;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 出品ボタンだけ特別な見た目に */
+.header-nav__button--special {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
