@@ -22,6 +22,33 @@ php artisan db:seed
 composer require doctrine/dbal  # カラム名変更などに使用
 ```
 
+### .envファイルの修正について
+
+`.env` は `.env.example` をコピーした後、以下の環境変数を記載してください。
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
+これらの値は、Dockerで構築するMySQLコンテナの設定（`docker-compose.yml`）と一致させる必要があります。
+
+---
+
+### MySQL 設定（docker-compose.yml）
+```yaml
+mysql:
+  platform: linux/x86_64
+  image: mysql:8.0.26
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: laravel_db
+    MYSQL_USER: laravel_user
+    MYSQL_PASSWORD: laravel_pass
+
 ## 使用技術（実行環境）
 
 - PHP: 7.4.9
