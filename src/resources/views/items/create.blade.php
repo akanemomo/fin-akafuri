@@ -8,6 +8,7 @@
 <div class="exhibit-container">
     <h2 class="exhibit-title">商品の出品</h2>
 
+    @auth
     <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="exhibit-form">
         @csrf
 
@@ -20,9 +21,22 @@
             </div>
             @error('image')
                 <p class="form-error">{{ $message }}</p>
-                @enderror
+            @enderror
         </div>
 
+        <!-- プレビュー画像 -->
+        <img id="preview" style="max-height: 150px; margin-top: 10px;" />
+
+        <!-- プレビューJS -->
+        <script>
+            document.getElementById('image').addEventListener('change', function(e) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview').src = e.target.result;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            });
+        </script>
 
         <!-- カテゴリー -->
         <div class="form-group">
@@ -31,18 +45,16 @@
                 @foreach($categories as $index => $category)
                     <label class="category-button">
                         <input type="radio" name="category_id" value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'checked' : '' }}>
-                        {{ $category->name }}
+                        <span>{{ $category->name }}</span>
                     </label>
-
-                    {{-- 1列目（6個目）と2列目（12個目）のあとに改行 --}}
                     @if ($index == 5 || $index == 11)
                         <div class="break"></div>
                     @endif
                 @endforeach
             </div>
-        @error('category_id')
-            <p class="form-error">{{ $message }}</p>
-        @enderror
+            @error('category_id')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- 商品の状態 -->
@@ -89,13 +101,47 @@
             <div class="price-input-wrapper">
                 <span class="price-yen">¥</span>
                 <input type="number" name="price" value="{{ old('price') }}" class="price-input">
-        </div>
-        @error('price')
-            <p class="form-error">{{ $message }}</p>
-        @enderror
+            </div>
+            @error('price')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
         </div>
 
         <button type="submit" class="submit-button">出品する</button>
+
+        <!-- カテゴリーボタン選択時に色変更するJS -->
+        <script>
+            document.querySelectorAll('.category-button input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    document.querySelectorAll('.category-button').forEach(label => label.classList.remove('selected'));
+                    if (this.checked) {
+                        this.closest('.category-button').classList.add('selected');
+                    }
+                });
+            });
+            // クリック時の切り替え処理
+            document.querySelectorAll('.category-button input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    document.querySelectorAll('.category-button').forEach(label => label.classList.remove('selected'));
+                    if (this.checked) {
+                        this.closest('.category-button').classList.add('selected');
+                    }
+                });
+            });
+
+            // ✅ ページ読み込み時に .selected を初期付与
+            window.addEventListener('DOMContentLoaded', () => {
+                const checked = document.querySelector('.category-button input[type="radio"]:checked');
+                if (checked) {
+                    checked.closest('.category-button').classList.add('selected');
+                }
+            });
+        </script>
     </form>
+    @else
+        <p style="color: red; text-align: center; margin-top: 30px;">
+            出品にはログインが必要です。
+        </p>
+    @endauth
 </div>
 @endsection

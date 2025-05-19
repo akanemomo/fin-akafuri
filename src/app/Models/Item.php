@@ -9,6 +9,17 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'brand',
+        'description',
+        'image_path',
+        'category_id',
+        'condition',
+        'price',
+        'user_id'
+    ];
+
     public function likes()
     {
         return $this->belongsToMany(User::class, 'likes')->withTimestamps();

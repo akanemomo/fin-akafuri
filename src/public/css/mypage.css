@@ -1,0 +1,54 @@
+.mypage-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+}
+
+.mypage-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tab-menu {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.tab {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-bottom: 2px solid transparent;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.tab.active {
+    border-bottom: 2px solid red;
+    color: red;
+}
+
+.item-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.item-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.item-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}

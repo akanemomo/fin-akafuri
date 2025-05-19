@@ -36,7 +36,10 @@
 /* 商品画像を囲むボックス（比率を固定） */
 .item-card__image-box {
     width: 100%;
-    height: 180px;
+    height: auto;
+    /* ← 高さ固定を解除 */
+    aspect-ratio: 4 / 3;
+    /* ← 比率を固定（4:3） */
     overflow: hidden;
     border-radius: 5px;
     background-color: #eee;

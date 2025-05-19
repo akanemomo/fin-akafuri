@@ -1,8 +1,7 @@
-version: '3.8'
-
 services:
   nginx:
     image: nginx:1.21.1
+    platform: linux/amd64  #ここでAMD64プラットフォームを指定
     ports:
       - "80:80"
     volumes:
@@ -31,6 +30,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    platform: linux/amd64   #ここでAMD64プラットフォームを指定
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=mysql

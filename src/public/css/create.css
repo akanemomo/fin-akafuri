@@ -31,9 +31,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     column-gap: 20px;
-        /* ★列と列の隙間（column-gap）を20pxに固定する */
     row-gap: 10px;
-        /* ★行と行の隙間（row-gap）も設定する */
     justify-items: center;
 }
 
@@ -42,7 +40,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px 16px;
     border: 2px solid #f66;
     border-radius: 20px;
     background: #fff;
@@ -50,10 +47,8 @@
     font-weight: bold;
     font-size: 12px;
     height: 40px;
-    text-align: center;
-    white-space: nowrap;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 /* ラジオボタンは非表示 */
@@ -61,11 +56,28 @@
     display: none;
 }
 
-/* 選択されたときのスタイル */
-.category-button input[type="radio"]:checked+* {
-    background: #f66;
-    color: #fff;
+/* カテゴリーボタン表示部分 */
+.category-button span {
+    padding: 0 16px;
+    display: inline-block;
+    line-height: 40px;
 }
+
+/* 選択されたカテゴリーボタン（JSで.selectedが付与） */
+.category-button.selected {
+    background-color: red;
+    color: white;
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.category-button.selected span {
+    color: #fff !important;
+}
+
 /* テキスト入力・セレクト・テキストエリア */
 input[type="text"],
 input[type="number"],
@@ -115,26 +127,12 @@ select {
 
 /* 画像を選択するボタン */
 .upload-button {
-    background-color: #f66;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-}
-
-/* 画像を選択するボタン */
-.upload-button {
     display: inline-block;
     padding: 10px 24px;
     border: 2px solid #f66;
     border-radius: 12px;
     background: #fff;
-    /* 白背景 */
     color: #f66;
-    /* 文字は赤 */
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
@@ -162,7 +160,6 @@ select {
 
 .price-input {
     padding-left: 30px;
-    /* ¥マーク分だけ余白を作る */
 }
 
 /* 商品説明欄を大きくする */

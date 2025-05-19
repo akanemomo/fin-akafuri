@@ -91,7 +91,6 @@ class ItemController extends Controller
 
         // セッションに一時保存（通常はDBに保存）
         session([
-            'address.name' => $validated['name'],
             'address.postal_code' => $validated['postal_code'],
             'address.address' => $validated['address'],
             'address.building' => $validated['building'],

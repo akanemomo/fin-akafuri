@@ -1,7 +1,7 @@
 .item-detail__wrapper {
     display: flex;
-    max-width: 900px;
-    margin: 40px auto;
+    max-width: 1000px;
+    margin: 50px auto;
     gap: 40px;
     padding: 0 20px;
 }
@@ -33,12 +33,14 @@
 
 .item-detail__info-box {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .item-detail__name {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 16px;
+    margin-bottom: 5px;
 }
 
 .item-detail__brand {
@@ -50,50 +52,15 @@
 .item-detail__price {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .tax-included {
     font-size: 14px;
     color: #666;
+    margin-left: 10px;
 }
 
-.item-detail__icons {
-    display: flex;
-    gap: 10px;
-    font-size: 18px;
-    color: #333;
-    margin: 10px 0;
-}
-
-.item-detail__section {
-    margin-bottom: 30px;
-}
-
-.item-detail__section h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 20px 0 10px;
-}
-
-.comment {
-    background: #f8f8f8;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.comment-textarea {
-    width: 100%;
-    height: 80px;
-    padding: 10px;
-    font-size: 14px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* ✅ 統一赤ボタン */
 .button-red {
     background: #F26B6B;
     color: #fff;
@@ -102,13 +69,62 @@
     border-radius: 5px;
     font-weight: bold;
     font-size: 16px;
-    width: 100%;
-    /* 🔴 幅いっぱいに */
-    text-align: center;
-    display: block;
+    margin: 20px 0;
     cursor: pointer;
+}
+
+.item-detail__icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.like-button {
+    margin-bottom: 20px;
+}
+
+.like-btn {
+    padding: 6px 14px;
+    background: #eee;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.submit-button {
+    background: #f66;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-list {
     margin-top: 20px;
-    /* 🔴 中央寄せしないようにauto削除 */
+    font-size: 14px;
+}
+
+.item-detail__section {
+    margin-bottom: 20px;
+}
+
+.item-detail__section h3 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 8px;
 }
 
 .badge {
