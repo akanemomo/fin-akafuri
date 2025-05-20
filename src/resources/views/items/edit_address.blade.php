@@ -8,7 +8,7 @@
 <div class="address-form__wrapper">
     <h2 class="address-form__title">住所の変更</h2>
 
-    <form action="{{ route('items.updateAddress', $item->id) }}" method="POST" class="address-form">
+    <form action="{{ route('address.update', ['item' => $item->id]) }}" method="POST" class="address-form">
         @csrf
 
         {{-- 郵便番号 --}}

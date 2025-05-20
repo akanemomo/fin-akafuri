@@ -64,8 +64,8 @@ mysql:
 - 会員登録画面：http://localhost/register
 - ログイン画面：http://localhost/login
 - 商品詳細画面：http://localhost/item/:item_id
-- 商品購入画面：http://localhost/purchase/:item_id ※未実装
-- 住所変更ページ：http://localhost/purchase/address/:item_id ※未実装
+- 商品購入画面：http://localhost/item/:item_id/purchase
+- 住所変更ページ：http://localhost/item/:item_id/address
 - 商品出品画面：http://localhost/sell
 - プロフィール画面：http://localhost/mypage ※未実装
 - プロフィール編集画面：http://localhost/mypage/profile ※未実装
@@ -86,10 +86,10 @@ Draw.io ファイル：[akafuri_er.drawio](./resources/docs/akafuri_er.drawio)
 - 商品出品機能（画像／カテゴリ／状態／価格など）
 - いいね機能（登録・解除、いいね数表示）
 - コメント送信機能（ログインユーザーのみ、バリデーションあり、コメント数表示）
+- 送付先住所変更機能（ログインユーザーのみ、バリデーションあり、購入画面に反映）
+- 商品購入機能（支払方法選択、登録済住所を使用）
 
 ## 今後の予定
-
-- 商品購入機能（支払方法選択、配送先管理）
 - プロフィール登録／編集機能（画像・名前・郵便番号・住所の管理）
 - マイページ機能（購入済商品・出品済商品）
 - 商品検索／絞り込み機能（キーワード・カテゴリ・状態）

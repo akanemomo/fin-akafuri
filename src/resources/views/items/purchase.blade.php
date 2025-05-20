@@ -47,9 +47,9 @@ use Illuminate\Support\Str;
                 <div class="form-block">
                     <label>配送先</label>
                     <div class="address">
-                        @if (session('address.postal_code'))
-                            <p>〒{{ session('address.postal_code') }}</p>
-                            <p>{{ session('address.address') }} {{ session('address.building') }}</p>
+                        @if (Auth::user()->postal_code && Auth::user()->address)
+                            <p>〒{{ Auth::user()->postal_code }}</p>
+                            <p>{{ Auth::user()->address }} {{ Auth::user()->building }}</p>
                         @else
                             <p>住所情報が登録されていません。</p>
                         @endif

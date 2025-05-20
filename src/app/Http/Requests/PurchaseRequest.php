@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class PurchaseRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,22 +14,15 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email:rfc,dns|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'payment_method' => 'required|in:credit,convenience',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' => 'お名前を入力してください。',
-            'email.required' => 'メールアドレスを入力してください。',
-            'email.email' => 'メールアドレスの形式が正しくありません。',
-            'email.unique' => 'このメールアドレスは既に登録されています。',
-            'password.required' => 'パスワードを入力してください。',
-            'password.min' => 'パスワードは8文字以上で入力してください。',
-            'password.confirmed' => '確認用パスワードが一致しません。',
+            'payment_method.required' => '支払い方法を選択してください。',
+            'payment_method.in' => '選択された支払い方法が無効です。',
         ];
     }
 }

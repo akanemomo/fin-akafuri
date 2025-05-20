@@ -51,4 +51,16 @@ class UserController extends Controller
 
         return view('users.mypage', compact('buyItems', 'sellItems'));
     }
+
+    public function updateAddress(Request $request, $item_id)
+    {
+        $user = Auth::user();
+
+        $user->postal_code = $request->postal_code;
+        $user->address = $request->address;
+        $user->building = $request->building;
+        $user->save();
+
+        return redirect()->route('items.purchase', ['item' => $item_id]);
+    }
 }

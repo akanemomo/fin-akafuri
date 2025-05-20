@@ -19,9 +19,13 @@ Route::delete('/item/{item}/like', [LikeController::class, 'destroy'])->name('it
 // コメント投稿
 Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comments.store');
 
-// 住所変更画面・処理
+// 住所変更画面（表示）
 Route::get('/item/{item}/address', [ItemController::class, 'editAddress'])->name('items.editAddress');
-Route::post('/item/{item}/address', [ItemController::class, 'updateAddress'])->name('items.updateAddress');
+
+// 住所変更の処理
+Route::post('/item/{item}/address', [UserController::class, 'updateAddress'])
+    ->middleware('auth')
+    ->name('address.update');
 
 // 商品購入（画面表示＆処理）
 Route::get('/item/{item}/purchase', [ItemController::class, 'purchase'])->name('items.purchase');
