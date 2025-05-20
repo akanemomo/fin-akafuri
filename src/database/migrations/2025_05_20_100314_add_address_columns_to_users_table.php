@@ -15,7 +15,7 @@ class AddAddressColumnsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('postal_code')->nullable();
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('building')->nullable();
         });
     }

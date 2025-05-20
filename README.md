@@ -22,6 +22,15 @@ php artisan db:seed
 composer require doctrine/dbal  # カラム名変更などに使用
 ```
 
+### 公開ストレージリンクの作成（画像表示に必要）
+
+Laravelで画像を表示するには、以下のコマンドで
+`public/storage` ディレクトリにリンクを作成する必要があります。
+
+```bash
+php artisan storage:link
+```
+
 ### .envファイルの修正について
 
 `.env` は `.env.example` をコピーした後、以下の環境変数を記載してください。

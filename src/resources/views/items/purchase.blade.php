@@ -47,11 +47,15 @@ use Illuminate\Support\Str;
                 <div class="form-block">
                     <label>配送先</label>
                     <div class="address">
-                        @if (Auth::user()->postal_code && Auth::user()->address)
-                            <p>〒{{ Auth::user()->postal_code }}</p>
-                            <p>{{ Auth::user()->address }} {{ Auth::user()->building }}</p>
+                        @if (Auth::check())
+                            @if (Auth::user()->postal_code && Auth::user()->address)
+                                <p>〒{{ Auth::user()->postal_code }}</p>
+                                <p>{{ Auth::user()->address }} {{ Auth::user()->building }}</p>
+                            @else
+                                <p>住所情報が登録されていません。</p>
+                            @endif
                         @else
-                            <p>住所情報が登録されていません。</p>
+                            <p>ログインしてください。</p>
                         @endif
                         <a href="{{ route('items.editAddress', $item->id) }}" class="change-link">変更する</a>
                     </div>
