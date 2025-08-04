@@ -1,108 +1,64 @@
-# Akafuri
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-## 環境構築
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-### Docker ビルド
+## About Laravel
 
-```
-git clone <リポジトリURL>
-cd <プロジェクトディレクトリ>
-docker-compose up -d --build
-```
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-### Laravel 環境構築
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-```
-docker-compose exec php bash
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate
-php artisan db:seed
-composer require doctrine/dbal  # カラム名変更などに使用
-```
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-### 公開ストレージリンクの作成（画像表示に必要）
+## Learning Laravel
 
-Laravelで画像を表示するには、以下のコマンドで
-`public/storage` ディレクトリにリンクを作成する必要があります。
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-```bash
-php artisan storage:link
-```
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-### .envファイルの修正について
+## Laravel Sponsors
 
-`.env` は `.env.example` をコピーした後、以下の環境変数を記載してください。
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-```env
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
-```
-これらの値は、Dockerで構築するMySQLコンテナの設定（`docker-compose.yml`）と一致させる必要があります。
+### Premium Partners
 
----
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
-### MySQL 設定（docker-compose.yml）
-```yaml
-mysql:
-  platform: linux/x86_64
-  image: mysql:8.0.26
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: laravel_db
-    MYSQL_USER: laravel_user
-    MYSQL_PASSWORD: laravel_pass
+## Contributing
 
-## 使用技術（実行環境）
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-- PHP: 7.4.9
-- Laravel: 8.83.8
-- MySQL: 8.0.34
-- nginx: 1.21.1
-- Fortify: ログイン機能に使用
+## Code of Conduct
 
-## 開発用 URL（仕様ベース、未実装の画面も含む）
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-- 商品一覧画面（トップ画面）：http://localhost/
-- 商品一覧画面（マイリスト）：http://localhost/?tab=mylist ※未実装
-- 会員登録画面：http://localhost/register
-- ログイン画面：http://localhost/login
-- 商品詳細画面：http://localhost/item/:item_id
-- 商品購入画面：http://localhost/item/:item_id/purchase
-- 住所変更ページ：http://localhost/item/:item_id/address
-- 商品出品画面：http://localhost/sell
-- プロフィール画面：http://localhost/mypage ※未実装
-- プロフィール編集画面：http://localhost/mypage/profile ※未実装
-- 購入済み商品一覧：http://localhost/mypage?tab=buy ※未実装
-- 出品済み商品一覧：http://localhost/mypage?tab=sell ※未実装
-- phpMyAdmin：http://localhost:8080
+## Security Vulnerabilities
 
-## ER 図
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-![ER図](./resources/docs/akafuri_er.png)
-Draw.io ファイル：[akafuri_er.drawio](./resources/docs/akafuri_er.drawio)
+## License
 
-## 実装済み機能
-
-- 会員登録／ログイン機能（Fortify）
-- 商品一覧表示（トップページ）
-- 商品詳細ページ
-- 商品出品機能（画像／カテゴリ／状態／価格など）
-- いいね機能（登録・解除、いいね数表示）
-- コメント送信機能（ログインユーザーのみ、バリデーションあり、コメント数表示）
-- 送付先住所変更機能（ログインユーザーのみ、バリデーションあり、購入画面に反映）
-- 商品購入機能（支払方法選択、登録済住所を使用）
-
-## 今後の予定
-- プロフィール登録／編集機能（画像・名前・郵便番号・住所の管理）
-- マイページ機能（購入済商品・出品済商品）
-- 商品検索／絞り込み機能（キーワード・カテゴリ・状態）
-
----
-
-以上が **Akafuri** の初期セットアップおよび実装概要です。
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
