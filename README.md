@@ -1,64 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Furima
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 環境構築
 
-## About Laravel
+### Docker ビルド
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```bash
+git clone <リポジトリURL>
+docker-compose up -d --build
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Laravel環境構築
+docker-compose exec php bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+composer require doctrine/dbal  # カラム名変更などに使用
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 使用技術（実行環境）
 
-## Learning Laravel
+PHP: 7.4.9
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Laravel: 8.83.8
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+MySQL: 8.0.34
 
-## Laravel Sponsors
+nginx: バージョン未記入
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Fortify: ログイン機能に使用
 
-### Premium Partners
+## 開発用 URL
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+商品一覧画面（トップ画面）：http://localhost/
 
-## Contributing
+商品一覧画面（マイリスト）：http://localhost/?tab=mylist
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+会員登録画面：http://localhost/register
 
-## Code of Conduct
+ログイン画面：http://localhost/login
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+商品詳細画面：http://localhost/item/:item_id
 
-## Security Vulnerabilities
+商品購入画面：http://localhost/purchase/:item_id
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+住所変更ページ：http://localhost/purchase/address/:item_id
 
-## License
+商品出品画面：http://localhost/sell
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+プロフィール画面：http://localhost/mypage
+
+プロフィール編集画面：http://localhost/mypage/profile
+
+購入済み商品一覧：http://localhost/mypage?tab=buy
+
+出品済み商品一覧：http://localhost/mypage?tab=sell
+
+phpMyAdmin：http://localhost:8080
+
+## ER 図
+
+![ER図](src/resources/docs/akafuri_er.png)
+
+## 実装済み機能
+
+会員登録・ログイン（Fortify）
+
+商品一覧表示
+
+商品詳細ページ
+
+商品出品機能
+
+商品編集・削除機能
+
+いいね機能（登録・解除、いいね数表示）
+
+コメント送信機能（ログインユーザーのみ、バリデーションあり、コメント数表示）
+
+商品購入機能（支払方法選択・住所変更対応）
+
+プロフィール表示・編集機能
+
+マイページ（購入一覧・出品一覧）
+
+## バリデーション仕様
+
+RegisterRequest.php：メール形式・パスワード 8 文字以上・確認用パスワード一致
+
+LoginRequest.php：メール形式・パスワード 8 文字以上
+
+ExhibitionRequest.php：商品名・説明・画像（jpeg/png）・カテゴリ・状態・価格必須
+
+CommentRequest.php：コメント必須、最大 255 文字
+
+PurchaseRequest.php：支払方法・住所必須
+
+AddressRequest.php：名前・郵便番号（ハイフンあり 8 桁）・住所・建物名必須
+
+ProfileRequest.php：プロフィール画像（jpeg/png）
+
+以上が Furima の環境構築手順と実装概要 です。
