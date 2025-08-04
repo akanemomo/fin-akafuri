@@ -48,8 +48,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
     public function buyItems()
     {
-        return $this->hasMany(Order::class); // モデルやテーブル名に応じて変更
+        return $this->belongsToMany(Item::class, 'orders', 'user_id', 'item_id');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }

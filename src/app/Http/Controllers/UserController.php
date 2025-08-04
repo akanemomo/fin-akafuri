@@ -11,29 +11,26 @@ class UserController extends Controller
 {
     public function edit()
     {
-        return view('users.profile_edit');
+        $user = Auth::user();
+        return view('users.profile_edit', compact('user'));
     }
 
     public function update(ProfileRequest $request)
     {
-        $user = Auth::user();
-        $data = $request->validated();
+        $user = auth()->user();
 
         // 画像があれば保存
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('profile-img', 'public');
-            $data['image_path'] = $path;
+        if ($request->hasFile('image_path')) {
+            $path = $request->file('image_path')->store('profiles', 'public');
+            $user->image_path = $path;
         }
 
         // プロフィールを更新
-        $user->update([
-            'name' => $data['name'],
-            'postal_code' => $data['postal_code'],
-            'address' => $data['address'],
-            'building' => $data['building'],
-            'image_path' => $data['image_path'] ?? $user->image_path,
-            'is_profile_set' => true,
-        ]);
+        $user->name = $request->name;
+        $user->postal_code = $request->postal_code;
+        $user->address = $request->address;
+        $user->building = $request->building;
+        $user->save();
 
         return redirect('/mypage')->with('success', 'プロフィールを更新しました！');
     }
@@ -46,8 +43,11 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        $buyItems = $user->buyItems()->latest()->get();   // 購入商品一覧
-        $sellItems = $user->items()->latest()->get();     // 出品商品一覧
+        // 購入商品（Item一覧を取得）
+        $buyItems = $user->buyItems()->latest()->get();
+
+        // 出品商品
+        $sellItems = $user->items()->latest()->get();
 
         return view('users.mypage', compact('buyItems', 'sellItems'));
     }

@@ -1,0 +1,92 @@
+/* プロフィール編集画面 */
+.profile-edit__container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトル */
+.profile-edit__container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* 画像とボタンを横並びに */
+.image-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* プロフィール画像（丸型固定） */
+.profile-image {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+    max-width: 120px !important;
+    max-height: 120px !important;
+    border: 2px solid #ddd;
+}
+
+/* 画像選択ボタン */
+.image-upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #FF4B4B;
+    border-radius: 12px;
+    color: #FF4B4B;
+    font-size: 16px;
+    font-weight: bold;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.image-upload-button:hover {
+    background: #FF4B4B;
+    color: #fff;
+}
+
+/* フォーム全体 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 更新ボタン */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #f66;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}

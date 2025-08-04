@@ -31,11 +31,34 @@
             ¥{{ number_format($item->price) }} <span class="tax-included">（税込）</span>
         </p>
 
-        <!-- アイコンと購入ボタン -->
-        <div class="item-detail__icons">
-            <span>⭐︎ {{ $likesCount }}</span>
-            <span>💬 {{ $commentsCount }}</span>
+    <!-- ⭐いいね / 💬コメント 表示 -->
+    <div class="item-detail__meta">
+        @auth
+            @if ($item->isLikedBy(auth()->user()))
+                <div class="like-wrapper">
+                    <form action="{{ route('items.unlike', $item->id) }}" method="POST" class="inline-form">
+                        @csrf @method('DELETE')
+                        <button type="submit" class="like-icon liked">★ {{ $likesCount }}</button>
+                    </form>
+                </div>
+            @else
+                <div class="like-wrapper">
+                    <form action="{{ route('items.like', $item->id) }}" method="POST" class="inline-form">
+                        @csrf
+                        <button type="submit" class="like-icon">☆ {{ $likesCount }}</button>
+                    </form>
+                </div>
+            @endif
+        @else
+            <div class="like-wrapper">
+                <span class="like-icon disabled">☆ {{ $likesCount }}</span>
+            </div>
+        @endauth
+
+        <div class="comment-wrapper">
+            <span class="comment-icon">💬 {{ $commentsCount }}</span>
         </div>
+    </div>
 
         <form action="{{ route('items.purchase', $item->id) }}" method="GET">
             <button type="submit" class="button-red">購入手続きへ</button>
@@ -51,8 +74,10 @@
         <div class="item-detail__section">
             <h3>商品の情報</h3>
             <p><strong>カテゴリ：</strong>
-                @if ($item->category)
-                    <span class="badge">{{ $item->category->name }}</span>
+                @if ($item->categories->isNotEmpty())
+                    @foreach ($item->categories as $category)
+                        <span class="badge">{{ $category->name }}</span>
+                    @endforeach
                 @else
                     <span class="badge">未設定</span>
                 @endif
@@ -70,37 +95,32 @@
 
         <!-- コメント一覧 -->
         <div class="comment-list">
-            <h3>コメント一覧</h3>
-            @foreach ($item->comments as $comment)
-                <p><strong>{{ $comment->user->name }}</strong>：{{ $comment->content }}</p>
-            @endforeach
+            <h3>コメント（{{ $commentsCount }}）</h3>
+            @forelse ($item->comments as $comment)
+                <div class="comment-item">
+                    <div class="comment-user">
+                        <div class="user-icon"></div>
+                        <span class="user-name">{{ $comment->user->name }}</span>
+                    </div>
+                    <div class="comment-content">{{ $comment->content }}</div>
+                </div>
+            @empty
+                <p class="no-comments">まだコメントはありません</p>
+            @endforelse
         </div>
 
         <!-- コメントフォーム -->
-        @auth
         <div class="comment-form">
-            <form action="{{ route('comments.store', $item->id) }}" method="POST">
-                @csrf
-                <textarea name="content" required placeholder="商品のコメントを入力してください"></textarea>
-                <button type="submit" class="submit-button">コメントを送信する</button>
-            </form>
-        </div>
-
-        <!-- いいねボタン -->
-        <div class="like-button">
-            @if ($item->isLikedBy(auth()->user()))
-                <form action="{{ route('items.unlike', $item->id) }}" method="POST">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="like-btn">★ いいね済み</button>
+            @auth
+                <form action="{{ route('comments.store', $item->id) }}" method="POST">
+                    @csrf
+                    <textarea name="content" required placeholder="商品のコメントを入力してください"></textarea>
+                    <button type="submit" class="submit-button">コメントを送信する</button>
                 </form>
             @else
-                <form action="{{ route('items.like', $item->id) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="like-btn">⭐︎ いいね</button>
-                </form>
-            @endif
+                <p class="login-notice">コメントするには <a href="{{ route('login') }}">ログイン</a> が必要です。</p>
+            @endauth
         </div>
-        @endauth
-    </div>
+
 </div>
 @endsection

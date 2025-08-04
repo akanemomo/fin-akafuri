@@ -16,7 +16,6 @@
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
-    /* ← 追加で崩れ対策！ */
 }
 
 /* 左側：商品詳細＋フォーム */
@@ -57,6 +56,8 @@
 /* フォーム共通ブロック */
 .form-block {
     margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
 }
 
 .form-block label {
@@ -66,20 +67,25 @@
 }
 
 .form-block select {
-    width: 100%;
+    width: 60%;
+    max-width: 300px;
     padding: 8px;
     font-size: 14px;
 }
 
-/* 住所ブロック */
+/* 配送先 */
+.address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .address p {
     margin: 0;
     line-height: 1.6;
 }
 
 .change-link {
-    display: inline-block;
-    margin-top: 8px;
     color: #007bff;
     font-size: 14px;
 }
@@ -87,22 +93,35 @@
 /* 右側：合計と購入ボタン */
 .purchase-summary {
     flex: 1;
-    min-width: 280px;
+    max-width: 320px;
     border: 1px solid #ccc;
     padding: 20px;
     height: fit-content;
+    margin-bottom: 0;
+}
+
+.summary-box {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.summary-box:last-child {
+    border-bottom: none;
 }
 
 .summary-box p {
-    margin-bottom: 10px;
+    margin-bottom: 0;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
 }
 
+/* 購入ボタンをボックス外に配置 */
 .purchase-button {
+    display: block;
     width: 100%;
-    margin-top: 20px;
+    max-width: 320px;
+    margin: 5px 0 0 auto;
     background-color: #f66;
     color: #fff;
     border: none;
@@ -113,7 +132,7 @@
     cursor: pointer;
 }
 
-/* スマホ・タブレット対応 */
+/* スマホ対応 */
 @media screen and (max-width: 768px) {
     .purchase-content {
         flex-direction: column;

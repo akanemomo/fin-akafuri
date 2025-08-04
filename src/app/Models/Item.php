@@ -14,12 +14,12 @@ class Item extends Model
         'brand',
         'description',
         'image_path',
-        'category_id',
         'condition',
         'price',
-        'user_id'
+        'user_id',
     ];
 
+    // 👍 いいね機能（多対多）
     public function likes()
     {
         return $this->belongsToMany(User::class, 'likes')->withTimestamps();
@@ -30,19 +30,21 @@ class Item extends Model
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 
+    // 👍 コメント機能（1対多）
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
+    // 👍 出品者（多対1）
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function category()
+    // 👍 カテゴリ（多対多）※中間テーブル category_item を使用
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class, 'category_item');
     }
-
 }

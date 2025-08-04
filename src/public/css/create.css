@@ -26,56 +26,40 @@
     margin-bottom: 5px;
 }
 
-/* カテゴリーボタン全体 */
+/* カテゴリーボタンのベース */
 .category-buttons {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    column-gap: 20px;
-    row-gap: 10px;
-    justify-items: center;
-}
-
-/* カテゴリーボタン個別 */
-.category-button {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid #f66;
-    border-radius: 20px;
-    background: #fff;
-    color: #f66;
-    font-weight: bold;
-    font-size: 12px;
-    height: 40px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-/* ラジオボタンは非表示 */
-.category-button input[type="radio"] {
+/* inputは非表示にする */
+.category-button input[type="checkbox"] {
     display: none;
 }
 
-/* カテゴリーボタン表示部分 */
+/* ボタンの見た目 */
 .category-button span {
-    padding: 0 16px;
     display: inline-block;
-    line-height: 40px;
+    padding: 8px 20px;
+    border: 2px solid #f66;
+    border-radius: 20px;
+    color: #f66;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-/* 選択されたカテゴリーボタン（JSで.selectedが付与） */
-.category-button.selected {
-    background-color: red;
-    color: white;
-    border: 2px solid red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+/* hover時 */
+.category-button span:hover {
+    background-color: #f66;
+    color: #fff;
 }
 
-.category-button.selected span {
-    color: #fff !important;
+/* ✅ 選択状態のときの見た目 */
+.category-button input[type="checkbox"]:checked+span {
+    background-color: #f66;
+    color: #fff;
 }
 
 /* テキスト入力・セレクト・テキストエリア */

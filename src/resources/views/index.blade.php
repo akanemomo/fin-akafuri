@@ -12,6 +12,11 @@ use Illuminate\Support\Str;
 <div class="item-list__content">
     <h1>商品一覧</h1>
 
+    <div class="tabs">
+        <a href="{{ url('/?page=default') }}" class="{{ request()->query('page') !== 'mylist' ? 'active' : '' }}">おすすめ</a>
+        <a href="{{ url('/?page=mylist') }}" class="{{ request()->query('page') === 'mylist' ? 'active' : '' }}">マイリスト</a>
+    </div>
+
     <div class="item-list">
         @foreach($items as $item)
         <a href="{{ route('items.show', $item->id) }}" class="item-link">

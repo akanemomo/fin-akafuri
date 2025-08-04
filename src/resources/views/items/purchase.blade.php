@@ -12,12 +12,12 @@ use Illuminate\Support\Str;
 <div class="purchase-container">
     <h1 class="page-title">商品購入画面</h1>
 
-    <!-- ✅ フォームを外側に出す -->
+    <!-- 購入フォーム -->
     <form action="{{ route('items.buy', $item->id) }}" method="POST">
         @csrf
 
         <div class="purchase-content">
-            <!-- 左側：商品情報 -->
+            <!-- 左側：商品情報とフォーム -->
             <div class="purchase-left">
                 <div class="item-info">
                     <img
@@ -43,9 +43,12 @@ use Illuminate\Support\Str;
                     @enderror
                 </div>
 
-                <!-- 配送先住所 -->
+                <!-- 配送先 -->
                 <div class="form-block">
-                    <label>配送先</label>
+                    <div class="address-header">
+                        <label>配送先</label>
+                        <a href="{{ route('items.editAddress', $item->id) }}" class="change-link">変更する</a>
+                    </div>
                     <div class="address">
                         @if (Auth::check())
                             @if (Auth::user()->postal_code && Auth::user()->address)
@@ -57,20 +60,25 @@ use Illuminate\Support\Str;
                         @else
                             <p>ログインしてください。</p>
                         @endif
-                        <a href="{{ route('items.editAddress', $item->id) }}" class="change-link">変更する</a>
                     </div>
                 </div>
             </div>
 
-            <!-- 右側：合計・購入ボタン -->
+            <!-- 右側：金額・支払い方法のまとめ -->
             <div class="purchase-summary">
                 <div class="summary-box">
                     <p>商品代金：<span>¥{{ number_format($item->price) }}</span></p>
+                </div>
+                <div class="summary-box">
                     <p>支払い方法：<span id="selected-method">選択してください</span></p>
                 </div>
-                <button type="submit" class="purchase-button">購入する</button>
             </div>
+
+            <!-- 枠外に購入ボタンを配置 -->
+            <button type="submit" class="purchase-button">購入する</button>
+
         </div>
+
     </form>
 </div>
 
@@ -80,10 +88,6 @@ use Illuminate\Support\Str;
         const display = document.getElementById('selected-method');
 
         if (select && display) {
-            if (select.value) {
-                display.textContent = select.options[select.selectedIndex].text;
-            }
-
             select.addEventListener('change', function () {
                 display.textContent = this.options[this.selectedIndex].text;
             });

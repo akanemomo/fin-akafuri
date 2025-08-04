@@ -27,7 +27,6 @@
         <!-- プレビュー画像 -->
         <img id="preview" style="max-height: 150px; margin-top: 10px;" />
 
-        <!-- プレビューJS -->
         <script>
             document.getElementById('image').addEventListener('change', function(e) {
                 const reader = new FileReader();
@@ -38,13 +37,15 @@
             });
         </script>
 
-        <!-- カテゴリー -->
+        <!-- カテゴリー（複数選択OK） -->
         <div class="form-group">
             <label>カテゴリー</label>
             <div class="category-buttons">
                 @foreach($categories as $index => $category)
                     <label class="category-button">
-                        <input type="radio" name="category_id" value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'checked' : '' }}>
+                        <!-- ✅ input は隠す -->
+                        <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                            {{ is_array(old('categories')) && in_array($category->id, old('categories')) ? 'checked' : '' }}>
                         <span>{{ $category->name }}</span>
                     </label>
                     @if ($index == 5 || $index == 11)
@@ -52,7 +53,7 @@
                     @endif
                 @endforeach
             </div>
-            @error('category_id')
+            @error('categories')
                 <p class="form-error">{{ $message }}</p>
             @enderror
         </div>
@@ -108,35 +109,6 @@
         </div>
 
         <button type="submit" class="submit-button">出品する</button>
-
-        <!-- カテゴリーボタン選択時に色変更するJS -->
-        <script>
-            document.querySelectorAll('.category-button input[type="radio"]').forEach(radio => {
-                radio.addEventListener('change', function () {
-                    document.querySelectorAll('.category-button').forEach(label => label.classList.remove('selected'));
-                    if (this.checked) {
-                        this.closest('.category-button').classList.add('selected');
-                    }
-                });
-            });
-            // クリック時の切り替え処理
-            document.querySelectorAll('.category-button input[type="radio"]').forEach(radio => {
-                radio.addEventListener('change', function () {
-                    document.querySelectorAll('.category-button').forEach(label => label.classList.remove('selected'));
-                    if (this.checked) {
-                        this.closest('.category-button').classList.add('selected');
-                    }
-                });
-            });
-
-            // ✅ ページ読み込み時に .selected を初期付与
-            window.addEventListener('DOMContentLoaded', () => {
-                const checked = document.querySelector('.category-button input[type="radio"]:checked');
-                if (checked) {
-                    checked.closest('.category-button').classList.add('selected');
-                }
-            });
-        </script>
     </form>
     @else
         <p style="color: red; text-align: center; margin-top: 30px;">
